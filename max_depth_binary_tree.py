@@ -20,3 +20,5 @@ class Solution:
         maxh_left = self.helper(root.left)
         maxh_right = self.helper(root.right)
         return 1+max(maxh_left,maxh_right)
+
+# 深搜， 方法简单直接

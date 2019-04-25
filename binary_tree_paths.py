@@ -1,32 +1,3 @@
-"""
-Definition of TreeNode:
-
-"""
-
-
-# class Solution:
-#     """
-#     @param root: the root of the binary tree
-#     @return: all root-to-leaf paths
-#     """
-#
-#     def binaryTreePaths(self, root):
-#         # write your code here
-#         self.paths = []
-#         self.find_paths(root, [])
-#         return self.paths
-#
-#     def find_paths(self, root, prev_path):
-#         if root.left is None and root.right is None:
-#             self.paths.append(prev_path+[root.val])
-#             return
-#         if root.left is None:
-#             self.find_paths(root.right, prev_path + [root.val])
-#         elif root.right is None:
-#             self.find_paths(root.left, prev_path + [root.val])
-#         else:
-#             self.find_paths(root.left, prev_path + [root.val])
-#             self.find_paths(root.right, prev_path + [root.val])
 
 
 """
@@ -85,4 +56,64 @@ x = Solution()
 
 print(x.binaryTreePaths(a))
 
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
 
+
+class Solution:
+    """
+    @param root: the root of the binary tree
+    @return: all root-to-leaf paths
+    """
+
+    def __init__(self):
+        self.result = []
+
+    def binaryTreePaths(self, root):
+        # write your code here
+        if not root:
+            return []
+        self.dfs(root, [str(root.val)])
+        return self.result
+
+    def dfs(self, root, path):
+        if root.left is None and root.right is None:
+            path_find = '->'.join(path)
+            self.result.append(path_find)
+        if root.left is not None:
+            self.dfs(root.left, path + [str(root.left.val)])
+        if root.right is not None:
+
+class Solution:
+    """
+    @param root: the root of the binary tree
+    @return: all root-to-leaf paths
+    """
+
+    def __init__(self):
+        self.result = []
+
+    def binaryTreePaths(self, root):
+        # write your code here
+        if not root:
+            return []
+        self.dfs(root, [])
+        return self.result
+
+    def dfs(self, root, path):
+        path.append(str(root.val))
+        if root.left is None and root.right is None:
+            path_find = '->'.join(path)
+            self.result.append(path_find)
+        if root.left is not None:
+            self.dfs(root.left, path)
+        if root.right is not None:
+            self.dfs(root.right, path)
+        path.pop()
+
+#这里面有三种解法： 第二三类似。 区别在于第二种在每一步前先把节点加入， 第三种是后把节点加入， 如果是后加的，那么要在最后一步把最后点pop出来

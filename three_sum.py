@@ -28,3 +28,6 @@ class Solution:
                 else:
                     right-=1
         return res
+
+# 从左往右扫， 每次固定一个值，然后用two pointers，从左右夹击
+# 核心在于如何去重。去重包括两种， 第一种是每次固定的值可能有重复，第二种是two pointer指向的值可能有重复
