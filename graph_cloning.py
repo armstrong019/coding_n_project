@@ -43,18 +43,25 @@ class Solution:
         while queue:
             nd = queue.popleft()
             result.append(nd)
-            #print("result is ",[r.label for r in result])
 
             for nb in nd.neighbors:
-                #print(nb.label)
-                #print([q.label for q in queue])
                 if nb not in result:
-                    #print(nb.label,"has been put into",[r.label for r in result])
-                    #result.append(nb)
                     queue.append(nb)
-                    #print(nb)
 
         return result
+
+    def getNode1(self, node):
+        q = deque([node])
+        res = [node]
+        while q:
+            nd = q.popleft()
+            for neighbor in nd.neighbors:
+                if neighbor not in res: #注意去重
+                    # only add in new nodes
+                    q.append(neighbor)
+                    res.append(neighbor)
+        return res
+
 
 
 a = UndirectedGraphNode(0)
@@ -71,3 +78,7 @@ c.neighbors.append(b)
 
 x = Solution()
 x.cloneGraph(a)
+
+# 3 steps: first get all the nodes from the graph
+# clone the node using hashtable: mapping[old_node] = new_node
+# clone edges: for each new_node reconstruct the new_neighbors

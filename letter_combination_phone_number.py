@@ -21,15 +21,18 @@ class Solution:
 
     def letterCombinations(self, digits):
         # write your code here
-        result = []
-        if not digits:
+        if digits == '':
             return []
-        self.dfs(digits, 0, '', result)
-        return result
+        self.res = []
+        self.dfs('', digits, 0)
+        return self.res
 
-    def dfs(self, digits, index, string, result):
+    def dfs(self, curr_comb, digits, index):
         if index == len(digits):
-            result.append(string)
+            print(curr_comb)
+            self.res.append(curr_comb)
             return
-        for i in keywords[digits[index]]:
-            self.dfs(digits, index + 1, string + i, result)
+        for letter in keywords[digits[index]]:
+            curr_comb = curr_comb + letter
+            self.dfs(curr_comb, digits, index + 1)
+            curr_comb = curr_comb[:-1]

@@ -116,4 +116,19 @@ class Solution:
             self.dfs(root.right, path)
         path.pop()
 
+    def dfs2(self, path, root):
+            path.append(str(root.val))
+            if root.left is None and root.right is None:
+                curr_path = '->'.join(path)
+                self.result.append(curr_path)
+                path.pop()
+                return
+            if root.left is not None:
+                self.dfs(path, root.left)
+            if root.right is not None:
+                self.dfs(path, root.right)
+            path.pop()
+
+
 #这里面有三种解法： 第二三类似。 区别在于第二种在每一步前先把节点加入， 第三种是后把节点加入， 如果是后加的，那么要在最后一步把最后点pop出来
+# 第三种有两种写法， 比较类似。 注意区别在于加了return 那么这样的话也要加pop（）

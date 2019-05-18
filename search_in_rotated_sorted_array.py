@@ -1,4 +1,4 @@
-class Solution(object):
+ class Solution(object):
     def search(self, A, target):
         """
         :type nums: List[int]

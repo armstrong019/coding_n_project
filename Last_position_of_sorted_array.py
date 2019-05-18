@@ -31,4 +31,3 @@ class Solution:
 # 几个要点： 第一 终止条件：start+1《end
 # 第二：如果是last position 那么将 nums【mid】和target比较的时候等号要注意
 # 第三： 最后在判断的时候先判断end的情况
-# 第三： 最后在判断的时候先判断end的情况

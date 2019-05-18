@@ -37,6 +37,8 @@ class Solution:
 # 1。 左节点是balanced， 右节点是balanced 并且两者高度相差不能超过1
 # 在这个前提下，我们需要两个输出， 一个是是否balance， 一个是当前高度
 # 注意剪枝
+# validate(self, root), 以root为子树的tree是否balance， 高度是多少
+
 
 
 

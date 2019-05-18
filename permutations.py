@@ -1,26 +1,27 @@
 class Solution:
     """
-    see drew picture
     @param: nums: A list of integers.
     @return: A list of permutations.
     """
 
     def permute(self, nums):
         # write your code here
-        if nums == []:
-            return [[]]
-        result = []
-        self.helper(nums, [], result,3)
-        return result
+        if nums == None:
+            return None
+        self.result = []
+        self.dfs([], nums)
+        return self.result
 
-    def helper(self, nums, current_list, result,n):
-        if len(current_list) ==n:
-            result.append(current_list[:])
+    def dfs(self, curr_list, nums):
+        if nums == []:
+            self.result.append(curr_list[:])
             return
         for i in range(len(nums)):
-            self.helper(nums[i + 1:], current_list + [nums[i]], result,n)
+            curr_list.append(nums[i])
+            self.dfs(curr_list, nums[:i]+nums[i + 1:])
+            curr_list.pop()
 
-nums = [1,2,3,9]
-x = Solution()
-print(x.permute(nums))
+# dfs。 state 包含两个部分， 一个是当前的permutation， 另一个是还未被用到的list of numbers
+# 每次从未被用到的list of numbers选择一个number， 加到当前的permutation里面
+
 
