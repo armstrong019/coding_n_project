@@ -25,3 +25,22 @@ class Solution:
 # DP solve this problem
 # f[i] number of perfect squares sum
 # f[i] = min{i, f[i-j**2]+1} (for all j**2<=i)
+
+class Solution:
+    """
+    @param n: a positive integer
+    @return: An integer
+    """
+
+    def numSquares(self, n):
+        # write your code here
+        dp = [sys.maxsize for i in range(n + 1)]
+        dp[0] = 0
+
+        for i in range(n + 1):
+            j = 1
+            while i + j * j <= n:
+                dp[i + j * j] = min(dp[i + j * j], dp[i] + 1)
+                j += 1
+        print(dp)
+        return dp[-1]

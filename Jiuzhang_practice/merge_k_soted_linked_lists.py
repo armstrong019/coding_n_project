@@ -21,7 +21,7 @@ class Solution:
         count = 0 # 这里面加count 是为了 break tie
         for list in lists:
             if list: # list 存在的时候才加
-                heapq.heappush(heap, (list.val, count, list))
+                heapq.heappush(heap, (list.val, count, list)) # list.val and list 都要放进去，list是为了以后要iterate用的
                 count += 1
 
         dummy = ListNode(-1)

@@ -54,3 +54,4 @@ print(res)
 # 第二种记录方法比较直接
 # 第二：什么时候count+1： 当前island第一次被visited （visited[i][j] == 0 and grid[i][j]）
 # 第三： 我们用了一个helper function去判断下一个点是否可行，是否需要继续进行dfs搜索： 当前点必须是可以走的点并且没有被visited过 （visited[i][j] == 0 and grid[i][j]）
+# 第四： 关于is_valid 的定义：position valid， 是可以走的， 并且没有被visited过

@@ -40,3 +40,25 @@ class Solution:
 # 注意要先更新maxsum 然后更新minsum： minsum 是前几个数的最小和
 
 
+class Solution:
+    """
+    @param nums: A list of integers
+    @return: A integer indicate the sum of max subarray
+    """
+    def maxSubArray(self, nums):
+        # write your code here
+        if nums == []:
+            return None
+        cumsum = [0 for i in range(len(nums))]
+        cumsum[0] = nums[0]
+        for i in range(1, len(nums)):
+            cumsum[i] = cumsum[i-1]+nums[i]
+        minsum = nums[0] # 初始值指向第一个
+        maxsum = nums[0]
+        for i in range(1,len(cumsum)):
+            if minsum<=0:
+                maxsum = max(maxsum, cumsum[i]-minsum)
+            else:
+                maxsum = max(maxsum, cumsum[i]) # 如果前面最小值大于0， 那么用cumsum[i]进行更新
+            minsum = min(minsum, cumsum[i])
+        return maxsum

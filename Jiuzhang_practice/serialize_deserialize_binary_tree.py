@@ -64,4 +64,4 @@ print(s.serialize(x))
 
 # 这道题目考量了dfs. serialize比较直接
 # deserialize的时候利用深搜的顺序 每次pop出一个值将这个值赋予当前的root。 如果遇到# 说明已经到达树的最底端，要返回（None），然后根据深搜的顺序拼起树的还没完成的那部分。
-#            当每一步完成的时候返回当前root
+# 当每一步完成的时候返回当前root

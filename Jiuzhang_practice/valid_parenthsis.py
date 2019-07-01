@@ -26,3 +26,6 @@ class Solution:
         return True
 
 # using stack is good
+# 有几个termination condition：
+        # #1。有一个右括号，但是stack为空，如果有有括号 stack 不空，但是对应不上、
+        # 2。 遍历完成还有多余的括号。
