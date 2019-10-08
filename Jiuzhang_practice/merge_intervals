@@ -1,0 +1,21 @@
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        self.result = []
+        intervals.sort(key=lambda x: x[0])
+        for interval in intervals:
+            if self.result != [] and self.result[-1][1] >= interval[0]:
+                self.pushback(interval)
+            else:
+                self.result.append(interval)
+        return self.result
+
+    def pushback(self, interval):
+        # compare the end time of the two intervals
+        if self.result[-1][1] < interval[1]:
+            self.result[-1][1] = interval[1]
+
+

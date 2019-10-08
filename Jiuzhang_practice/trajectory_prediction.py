@@ -199,7 +199,7 @@ if __name__ == '__main__':
     gpu_id = namespace.gpu_id
     gpu_memory_fraction = namespace.gpu_memory_fraction
 
-    path_name = '/home/marzieh/NGSIM_data/tree_repr/'
+    path_name = '/home/Fang/data/tree_repr/'
     file_name = 'per_branch_training_data_tree_us_101_history_length_' + str(hist_len) + '_prediction_length_' + str(
         pred_len) + '.h5'
 
@@ -269,10 +269,10 @@ if __name__ == '__main__':
 
     initial_epoch = 0
 
-    if not os.path.exists('/home/marzieh/model_results/checkpoints/' + model_dir):
-        os.makedirs('/home/marzieh/model_results/checkpoints/' + model_dir)
+    if not os.path.exists('/home/Fang/model_results/checkpoints/' + model_dir):
+        os.makedirs('/home/Fang/model_results/checkpoints/' + model_dir)
     # Checkpoint save path
-    filepath = '/home/marzieh/model_results/checkpoints/' + model_dir + '/{epoch:02d}-{loss:.2f}.hdf5'
+    filepath = '/home/Fang/model_results/checkpoints/' + model_dir + '/{epoch:02d}-{loss:.2f}.hdf5'
     checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True)
     cbacks = []
     cbacks.append(checkpoint)
