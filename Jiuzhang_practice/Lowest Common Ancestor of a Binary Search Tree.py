@@ -4,7 +4,7 @@ class Solution:
             return None
         if root.val<p.val and root.val<q.val:
             return self.lowestCommonAncestor(root.left, p,q) #剪枝并且继续深搜
-        if root.val>p and root.val>q.val:
+        if root.val>p.val and root.val>q.val:
             return self.lowestCommonAncestor(root.right,p,q)
         return root
 

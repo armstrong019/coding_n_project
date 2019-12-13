@@ -30,3 +30,22 @@ class Solution:
 # 三个状态变量： start: 当前开始深搜的index
 #              combination：当前已经记录的combination，是个list
 #              target： 当前还差的值。
+
+
+#另一种写法， 不用backtracking
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        self.result = []
+        self.candidates = sorted(candidates)
+        self.target = target
+        self.dfs([],0, target)
+        return self.result
+
+    def dfs(self, current_path, ind, residual):
+        if residual == 0:
+            self.result.append(current_path[:])
+            return
+        if residual < 0:
+            return
+        for i in range(ind, len(self.candidates)):
+            self.dfs(current_path+[self.candidates[i]],i, residual-self.candidates[i])
