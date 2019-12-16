@@ -1,3 +1,8 @@
+# 过一段时间做还是会忘记做法，说明理解不够深刻。 这道题类似于 insert interval， 但是比那个容易。
+# 这道题的精髓在于记录一个result， 每次都拿出一个interval和它对比，
+# 如果result 的最后一位比当前的这个interval 的开始靠后， 那么说名需要merge， 否则不需要
+# 注意因为事先进行了sort 所以当前interval的开始不可能早于最后一个result的开始
+# 另外这种将当前interval merge到result里面的方法 要优于两个interval互相merge的方法
 class Solution(object):
     def merge(self, intervals):
         """
