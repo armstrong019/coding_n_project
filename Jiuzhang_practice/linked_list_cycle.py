@@ -16,7 +16,7 @@ class Solution(object):
         ps = head
         pf = head
 
-        while pf.next and pf.next.next:
+        while pf.next and pf.next.next:  # 最后termination一定是看快指针， 而且必须先看pf.next 是否存在
             pf = pf.next.next
             ps = ps.next
             if pf == ps:

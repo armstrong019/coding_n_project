@@ -87,3 +87,39 @@ class Solution:
         return res
 
 
+# merge k sorted linked list
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+import heapq
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        if not lists:
+            return None
+        heap = []
+        head = ListNode(-1)
+        dummy = head
+        # push the head of all list into heap
+        count = 0
+        for list_head in lists:
+            if list_head:
+                heapq.heappush(heap, (list_head.val, count, list_head))
+                count += 1
+
+        while heap:
+            val, _, list_head = heapq.heappop(heap)
+            dummy.next = list_head
+            if list_head.next:
+                heapq.heappush(heap, (list_head.next.val, count, list_head.next))
+                count += 1
+            dummy = dummy.next
+        return dummy.next
+
+

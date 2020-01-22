@@ -6,20 +6,24 @@ class ListNode(object):
         self.next = next
 """
 
-class Solution:
-    """
-    @param head: the head of linked list.
-    @return: a middle node of the linked list
-    """
-    def middleNode(self, head):
-        # write your code here
-        if not head:
-            return head
-        ps = head
-        pf = head
-        while pf.next and pf.next.next:
-            pf = pf.next.next
-            ps = ps.next
-        return ps
+# two pointer, one move every step one move two steps each time.
 
-# two pointer, one move every step one move two steps each time. 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def middleNode(self, head: ListNode) -> ListNode:
+        if not head or head.next is None:
+            return head
+        fast = head
+        slow = head
+        while fast.next and fast.next.next:
+            fast = fast.next.next
+            slow = slow.next
+        if fast.next is None:
+            return slow
+        else:
+            return slow.next

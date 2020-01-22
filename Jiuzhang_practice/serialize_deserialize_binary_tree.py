@@ -43,8 +43,8 @@ class Solution:
             return None
         return self.dfs(data)
 
-    def dfs(self, data):
-        ch = data.pop(0)
+    def dfs(self, data): # 这个部分有一定的难度
+        ch = data.pop(0) # 每一次data 这个list 都被inplaced 修改了。
         if ch == '#':
             return None
         else:

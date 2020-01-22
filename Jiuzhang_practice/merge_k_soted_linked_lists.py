@@ -37,6 +37,6 @@ class Solution:
 
 
 
-        # use heap. in the beginning add all heads of the lists to the heap.
+# use heap. in the beginning add all heads of the lists to the heap.
 # then when heap is not empty, pop from the heap (first pop out the smallest value) (note here we can add more than 1 dimension (node.val, node)to the heap)
 # after pop, add the next node in to the heap

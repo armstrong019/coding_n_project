@@ -1,3 +1,4 @@
+# 这道题的解题思路和我的思路有点出入。我的思路是从最底部开始，儿标准答案s
 class Solution:
     """
     @param root: The root of binary tree.

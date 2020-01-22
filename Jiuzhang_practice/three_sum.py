@@ -10,6 +10,7 @@ class Solution:
         for i in range(len(numbers)-2):
             if numbers[i] > 0:
                 break
+            # 在这一步也需要去重， 如果这个书依据
             if numbers[i] == numbers[i-1]:
                 continue
             target=-numbers[i]
@@ -19,6 +20,7 @@ class Solution:
                     res.append([numbers[i],numbers[left],numbers[right]])
                     left+=1
                     right-=1
+                    #注意这个去重 是当找到一个答案以后。 去掉和当前答案一样的所有答案
                     while left<right and numbers[left]==numbers[left-1]:
                         left+=1
                     while left<right and numbers[right]==numbers[right+1]:

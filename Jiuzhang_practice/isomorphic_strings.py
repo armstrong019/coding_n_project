@@ -25,4 +25,4 @@ class Solution(object):
 
  # example： s='ab', t ='aa' False
  #           s='ab', t='ca' True
- # 这个例子比较绕。 用两个字典做比较容易。如果s对于t 是iso的那么他对于s 一定也是ISO的。 那么两个字典的功能应该是对等的/
+ # 这个例子比较绕。 用两个字典做比较容易。如果s对于t 是iso的那么t对于s 一定也是ISO的。 那么两个字典的功能应该是对等的/

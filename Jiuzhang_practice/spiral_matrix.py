@@ -35,3 +35,27 @@ class Solution(object):
             return True
         else:
             return False
+
+# 第二种方法是纯数学计算， 没有additional的space需求， 居然做对了 佩服自己
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix:
+            return []
+        res = [x for x in matrix[0]] # 第一步先假如第一行
+        m = len(matrix)
+        n = len(matrix[0])
+        dirs = [[1, 0], [0, -1], [-1, 0], [0, 1]] # 四个direction交替进行
+        steps = [m - 1, n - 1, m - 2, n - 2] # 四个方向的分别需要走的步子。例子：下m-1，左n-1，上m-2，右n-2，下m-3，左n-3 etc。
+        x = 0
+        y = n - 1
+        i = 0
+        while len(res) < m * n:
+            current_dir = dirs[i]
+            current_steps = steps[i]
+            for t in range(current_steps):
+                x = x + current_dir[0]
+                y = y + current_dir[1]
+                res.append(matrix[x][y])
+            steps[i] = steps[i] - 2
+            i = (i + 1) % 4
+        return res

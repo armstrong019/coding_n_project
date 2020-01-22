@@ -1,3 +1,4 @@
+# 是渃如果找到一个点他的值5
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
         if root is None:

@@ -86,3 +86,29 @@ class Solution:
         return root
 # 第二种方法是深度优先算法， 用来找upper或者lower bound
 # 这种方法比较巧妙不容易写对
+
+#无脑算法
+class Solution(object):
+    def closestValue(self, root, target):
+        """
+        :type root: TreeNode
+        :type target: float
+        :rtype: int
+        """
+        self.min_diff = sys.maxsize
+        self.value = None
+        while root:
+            print(root.val)
+            if root.val == target:
+                return root.val
+            elif root.val > target:
+                if root.val-target < self.min_diff:
+                    self.min_diff = root.val-target
+                    self.value = root.val
+                root = root.left
+            else:
+                if target-root.val < self.min_diff:
+                    self.min_diff = target-root.val
+                    self.value = root.val
+                root = root.right
+        return self.value

@@ -61,7 +61,7 @@ class MinStack:
 
     def pop(self) -> None:
         x = self.stack.pop()
-        if x == self.heap[0]:
+        if x == self.heap[0]: #这个地方比较巧妙 如果pop出去的这个数字不是 最小值， 那么不需要更新heao 否则要更新
             heapq.heappop(self.heap)
 
     def top(self) -> int:

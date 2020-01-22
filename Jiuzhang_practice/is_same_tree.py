@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+# 相当简单 基础的一道题
 class Solution(object):
     def isSameTree(self, p, q):
         """

@@ -50,3 +50,4 @@ class Solution:
 # 这道题充分利用了dfs backtrack的特性。
 # recursion function 的输入是root， A，B， 输出是以 root为顶的subtree 是否存在 A，B 的 lowest common ancestor， 如果存在返回lca， 不存在返回None
 # 在dfs回溯的过程中，如果root.left 和 root.right都有返回点， 那么root就一定是lca， 除此之外其他任何一个点都不具备这个特点。
+# 还需要考虑一个例子， 就是其中的一个点是lca的情况。这个时候只要找到其中一个点就返回， 因为题目保证两个都在里面

@@ -1,5 +1,5 @@
-
-
+关于为什么要pop 何时pop的解释
+# https://www.cnblogs.com/my_life/articles/7269212.html
 """
 Definition of TreeNode:
 class TreeNode:
@@ -88,6 +88,7 @@ class Solution:
         if root.left is not None:
             self.dfs(root.left, path + [str(root.left.val)])
         if root.right is not None:
+            self.dfs(root.right, path + [str(root.right.val)])
 
 class Solution:
     """
