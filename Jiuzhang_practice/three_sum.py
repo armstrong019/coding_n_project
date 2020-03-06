@@ -38,3 +38,30 @@ class Solution:
 numbers = [-2,-3,-4,-5,-100,99,1,4,4,4,5,1,0,-1,2,3,4,5]
 x= Solution()
 x.threeSum(numbers)
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        for k in range(len(nums)-2):
+            if nums[k]>0:
+                continue
+            if k != 0 and nums[k] == nums[k-1]:
+                continue
+            fix = -nums[k]
+            ps = k+1
+            pe = len(nums)-1
+            while ps<pe:
+                while ps<pe and ps != k+1 and nums[ps] == nums[ps-1]:
+                    ps+=1
+                if ps<pe:
+                    if nums[ps]+nums[pe] == fix:
+                        result.append([-fix, nums[ps], nums[pe]])
+                        ps+=1
+                        pe-=1
+                    elif nums[ps]+nums[pe]<fix:
+                        ps+=1
+                    else:
+                        pe-=1
+        return result

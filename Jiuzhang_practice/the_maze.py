@@ -39,3 +39,40 @@ class Solution:
 # 思路是BFS 每次选取一个方向， 一直走直不能走为止。
 # BFS：这道题需要注意的点是小球必须要能停到的点才可以， 途径点不能停的不可以。
 # stopped 记录所有的停驻点。 如果停驻点曾经走过， 就不能再走 防止死循环，途径点不重要 不需要记录
+
+# 第二种写法 这种写法的好处是一次处理一层，便于计算步数
+from collections import deque
+
+class Solution:
+    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+        if not maze:
+            return False
+        visited = [[0 for _ in range(len(maze[0]))] for _ in range(len(maze))]
+        visited[start[0]][start[1]] = 1
+        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        q = deque([(start[0], start[1])])
+        while q:
+            level = []
+            while q:
+                current_pos = q.popleft()
+                if current_pos[0] == destination[0] and current_pos[1] == destination[1]:
+                    return True
+                level.append(current_pos)
+            for pos in level:
+                for dir in dirs:
+                    temp_x = pos[0]
+                    temp_y = pos[1]
+                    while temp_x >= 0 and temp_x <= len(maze) - 1 and temp_y >= 0 and temp_y <= len(maze[0]) - 1 and \
+                            maze[temp_x][temp_y] != 1:
+                        temp_x += dir[0]
+                        temp_y += dir[1]
+                    next_x = temp_x - dir[0]
+                    next_y = temp_y - dir[1]
+
+                    if visited[next_x][next_y] == 0:
+                        visited[next_x][next_y] = 1
+                        q.append((next_x, next_y))
+        return False
+
+
+

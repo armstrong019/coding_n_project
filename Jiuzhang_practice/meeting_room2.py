@@ -50,7 +50,7 @@ class Solution:
 #  如果meeting开始时间比最小的完成时间小， 那么说明我们需要多加一个meeting room
 # 最后返回heap的长度
 
-
+# Jan/29th
 class Solution1:
     """
     @param intervals: an array of meeting time intervals

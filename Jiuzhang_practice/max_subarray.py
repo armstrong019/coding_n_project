@@ -62,3 +62,30 @@ class Solution:
                 maxsum = max(maxsum, cumsum[i]) # 如果前面最小值大于0， 那么用cumsum[i]进行更新
             minsum = min(minsum, cumsum[i])
         return maxsum
+
+# dp[i] 表示以i为结尾的包含i的 subarray sum
+# if dp[i-1]<=0 dp[i] = nums[i], if dp[i-1]>0 dp[i] = dp[i]+nums[i]
+# [-2, 1, -3, 4, 2, -1, 2, -3]
+# [-2, 1, -2, 4, 6, 5, 7, 4]
+# 这个方法是最好写也最方便的 在实际操作过程中应该采用这种方法
+class Solution:
+    """
+    @param nums: A list of integers
+    @return: A integer indicate the sum of max subarray
+    """
+    def maxSubArray(self, nums):
+        max_sum = nums[0]
+        prev_sum = nums[0]
+        for i in range(1, len(nums)):
+            if prev_sum <0:
+                prev_sum = nums[i]
+            else:
+                prev_sum += nums[i]
+            if max_sum < prev_sum:
+                max_sum = prev_sum
+        return max_sum
+
+
+
+
+

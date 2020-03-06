@@ -9,7 +9,7 @@ class Solution(object):
         """
         if not nums:
             return []
-        nums.sort()
+        nums.sort() # 之前首先要sort 一下
         self.result = []
         self.dfs([], nums)
         return self.result
@@ -40,3 +40,5 @@ class Solution(object):
                 self.result.append(current_perm[:])
         for i in range(len(rest)):
             self.dfs(current_perm + [rest[i]], rest[:i] + rest[i + 1:])
+
+# checked on March 3rd

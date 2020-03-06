@@ -49,3 +49,26 @@ class Solution(object):
             return
         for i in range(ind, len(self.candidates)):
             self.dfs(current_path+[self.candidates[i]],i, residual-self.candidates[i])
+
+Jan/29
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        result = []
+        candidates.sort
+        self.dfs([], 0, candidates, target, result)
+        return result
+
+    def dfs(self, path, ind, candidates, target, result):
+        if sum(path) > target:
+            return
+        if sum(path) == target:
+            result.append(path[:])
+            return
+        for i in range(ind, len(candidates)):
+            self.dfs(path + [candidates[i]], i, candidates, target, result)
+

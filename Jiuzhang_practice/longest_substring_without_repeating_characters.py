@@ -19,8 +19,30 @@ class Solution:
                 for key in list(dic): # 注意删除的话 如果不加list系统会报错说dic size change inside loop
                     if dic[key] <= ind:
                         del dic[key]
-                dic[s[i]] = i
+                #dic = {key: val for key, val in dic.items() if val>ind}
+                dic[s[i]] = i # 注意要把当前element再加回来
             max_len = max(max_len, i - left + 1)
         return max_len
 
+
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) <= 1:
+            return len(s)
+        dic = {}
+        left = 0
+        max_len = 1
+        for i in range(len(s)):
+            if s[i] not in dic:
+                dic[s[i]] = i
+            else:
+                left = dic[s[i]]+1
+                for key in list(dic):
+                    if dic[key]<=dic[s[i]]: # error will occur in this case
+                        del dic[key]
+                dic[s[i]] = i
+            if i-left+1>max_len:
+                max_len = i-left+1
+        return max_len
 

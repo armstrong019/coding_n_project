@@ -49,4 +49,29 @@ class Solution(object):
             #把当前的数字放进去，然后下次考虑下一个数字
             self.dfs(current_path+[self.candidates[i]], i+1, residual-self.candidates[i])
 
+# Jan/29
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
 
+        candidates.sort()
+        result = []
+        self.dfs(0, [], candidates, target, result)
+        return result
+
+    def dfs(self, ind, path, candidates, target, result):
+        if sum(path) == target:
+            if path not in result:
+                result.append(path[:])
+            return
+        # if sum(path)>target:
+        #     return
+        for i in range(ind, len(candidates)):
+            if sum(path) + candidates[i] > target:
+                break
+            else:
+                self.dfs(i + 1, path + [candidates[i]], candidates, target, result)

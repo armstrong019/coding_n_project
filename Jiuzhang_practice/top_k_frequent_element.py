@@ -12,3 +12,4 @@ class Solution:
         return res
 
 # 这道题就是用heap 或者hashtable比较合适
+

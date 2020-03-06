@@ -31,8 +31,8 @@ class Solution:
         return count
 
     def dfs(self, i, j, visited, grid):
-        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         visited[i][j] = 1
+        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         for d in dirs:
             if self.is_valid(i + d[0], j + d[1], grid, visited):
                 self.dfs(i + d[0], j + d[1], visited, grid)
@@ -43,7 +43,7 @@ class Solution:
                 return True
         return False
 
-x=Solution()
+x = Solution()
 grid = [[1,1,0,0,0],[0,1,0,0,1],[0,0,0,1,1],[0,0,0,0,0],[0,0,0,0,1]]
 res = x.numIslands(grid)
 print(res)

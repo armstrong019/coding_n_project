@@ -1,8 +1,11 @@
 # refer to knight shortest path： 从开始到结束的最短路径
+# 这个是层遍历的典型题目， 另外这道题不需要单独记录visited， 直接改变grid即可
+
 from collections import deque
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         all_rotten = self.find_all_rotten_oranges(grid)
+        # 如果没有坏的，那么看里面是否有好的， 如果有， 返回-1， 否则返回0
         if not all_rotten:  # take care of the special case
             if any(1 in row for row in grid):
                 return -1

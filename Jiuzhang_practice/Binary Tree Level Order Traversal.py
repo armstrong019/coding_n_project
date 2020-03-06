@@ -32,4 +32,22 @@ class Solution:
             res.append(level)
         return res
 
-#BFS 用queue去实现。
+#BFS 用queue去实现。这个是后来写的， 比较好理解
+from collections import deque
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        res  = []
+        q = deque([root])
+        while q:
+            level = []
+            while q:
+                level.append(q.popleft())
+            res.append([nd.val for nd in level])
+            for node in level:
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+        return res

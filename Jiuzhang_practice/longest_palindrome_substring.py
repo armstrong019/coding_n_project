@@ -5,19 +5,19 @@ class Solution:
     """
     def longestPalindrome(self, s):
         # write your code here
-        max_len = 1
+        max_len = 0
         res = None
         for i in range(len(s)):
             temp = []
             for j in range(i, len(s)):
-                substring = s[i:j+1]
+                substring = s[i:j+1] # 最主要就是注意indexing
                 if substring==substring[::-1]:
                     if len(substring)>= max_len:
                         res = substring[:]
                         max_len =max(max_len, len(substring))
         return res
-# 两种方法略有不同
 
+# 两种方法略有不同
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         if not s:

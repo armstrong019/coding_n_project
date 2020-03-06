@@ -40,4 +40,4 @@ class Solution:
         for i in range(len(rest)):
             self.dfs(current_perm + [rest[i]], rest[:i] + rest[i + 1:])
 
-
+# checked on March 1st

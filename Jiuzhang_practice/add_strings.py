@@ -18,7 +18,7 @@ class Solution:
             n1 = n1 - 1
             n2 = n2 - 1
 
-        if residual != 0:
+        if residual != 0: # 多出来的部分的处理
             res += str(residual)
         return res[::-1]
 
@@ -56,4 +56,29 @@ class Solution(object):
 
         return res[::-1]
 
-# 直接自负之间相加
+
+class Solution(object):
+    def addStrings(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        number = ''
+        carry = 0
+        s1 = num1[::-1]
+        s2 = num2[::-1]
+        i = 0
+        while i <= max(len(s1), len(s2)) - 1:
+            val = carry
+            if i <= len(s1) - 1:
+                val += int(s1[i])
+            if i <= len(s2) - 1:
+                val += int(s2[i])
+            number += str(val % 10)
+            carry = val // 10
+            i += 1
+        if carry > 0:  # 多出来的部分的处理办法
+            number += str(carry)
+        return number[::-1]
+

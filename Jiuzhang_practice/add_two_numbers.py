@@ -24,7 +24,7 @@ class Solution(object):
             value = v % 10
             residual = v // 10
 
-            dummy.next = ListNode(value)
+            dummy.next = ListNode(value) # 这一点需要注意， 具体list node 是怎么create 又是怎么联系起来的
             dummy = dummy.next
             if l1:
                 l1 = l1.next

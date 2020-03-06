@@ -57,10 +57,28 @@ def bubble_sort3(x):
                 x[j],x[j+1] = x[j+1],x[j]
     return x
 
+# x = [-1, 2, 5, 3, 4, 1, 2]
+# #inplace_bubble_sort(x)
+# bubble_sort3(x)
+# # Should print [1, 2, 3, 4, 5]
+# print(x)
+
+
+def bubble_sort_0(List):
+    for i in range(0,len(List)):
+        flag = False
+        for j in range(0, len(List)-1-i): # 每一次最后一位都是sort好的
+            if List[j]>List[j+1]:
+                List[j],List[j+1] = List[j+1],List[j]
+                flag = True
+        if not flag:
+            break
+
 x = [-1, 2, 5, 3, 4, 1, 2]
+x0 = [8,1,2,3]
 #inplace_bubble_sort(x)
-bubble_sort3(x)
+bubble_sort_0(x0)
 # Should print [1, 2, 3, 4, 5]
-print(x)
+print(x0)
 
 
