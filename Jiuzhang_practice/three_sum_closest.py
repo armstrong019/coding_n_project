@@ -1,5 +1,5 @@
 # 自己写的版本 类似于3sum。
-
+# run time 的要求没有3sum 那么严格 可以不太考虑去重
 class Solution(object):
     def threeSumClosest(self, nums, target):
         """

@@ -1,3 +1,5 @@
+# 考试写最后一个版本
+
 class Solution:
     """
     @param num: Given the candidate numbers
@@ -75,3 +77,24 @@ class Solution(object):
                 break
             else:
                 self.dfs(i + 1, path + [candidates[i]], candidates, target, result)
+
+#jun 24th
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        if not candidates:
+            return []
+        candidates.sort()
+        result = []
+        self.dfs([], candidates, target, result)
+        return result
+
+    def dfs(self, curr_path, rest, target, result):
+        if sum(curr_path) == target:
+            if curr_path not in result:
+                result.append(curr_path[:])
+                return
+        if rest == []:
+            return
+        for i in range(len(rest)):
+            if sum(curr_path + [rest[0]]) <= target:
+                self.dfs(curr_path + [rest[i]], rest[i + 1:], target, result)

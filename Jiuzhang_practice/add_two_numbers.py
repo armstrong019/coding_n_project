@@ -31,7 +31,7 @@ class Solution(object):
             if l2:
                 l2 = l2.next
 
-        if residual != 0:
+        if residual != 0:  # 如果两个list都走完了， 还需要考虑进位的情况。
             dummy.next = ListNode(residual)
         return head.next
 

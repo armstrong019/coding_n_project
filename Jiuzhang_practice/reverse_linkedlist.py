@@ -50,6 +50,7 @@ class Solution(object):
             cur = nxt
         return prev # 注意最后返回的是prev
 
+
 # 自己写的另一个版本
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
@@ -67,3 +68,7 @@ class Solution:
             else:
                 break
         return prev
+
+# 总结 这道题目 有三种写法， 外部定义 单指针 双指针 三指针。 三指针 是我最容易想到的方法， 但是termination conditon 需要考虑好。
+# 双指针 最好写， 但是不是最好想。 要面试还是写第三种。
+# 这道题在考试的时候必须画图。

@@ -1,3 +1,6 @@
+# 这两种写法其实是等价的
+# 随便用哪个都可以。
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -20,5 +23,19 @@ class Solution(object):
             pf = pf.next.next
             ps = ps.next
             if pf == ps:
+                return True
+        return False
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+
+        if head is None or head.next is None:
+            return False
+        ps = head
+        pf = head
+        while pf and pf.next:
+            ps = ps.next
+            pf = pf.next.next
+            if ps == pf:
                 return True
         return False

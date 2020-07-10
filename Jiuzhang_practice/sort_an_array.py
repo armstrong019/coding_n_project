@@ -1,3 +1,13 @@
+# bubble sort 的写法
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        # Bubble sort first
+        for k in range(len(nums)):
+            for i in range(len(nums)-1-k):
+                if nums[i]>nums[i+1]:
+                    nums[i],nums[i+1] = nums[i+1], nums[i]
+        return nums
+
 # selection sort 的写法
 class Solution(object):
     def sortArray(self, nums):
@@ -37,7 +47,7 @@ class Solution(object):
 
     def partition(self, nums, left, right): # similar to move zeros
         pivot = nums[right] #最后一位是pivot
-        pind = left # 指向需要swap的位置
+        pind = left # 指向需要swap的位置,希望指向一个大值， 这样才可以被小值代替掉
         for i in range(left, right):
             if nums[i] < pivot: # 如果当前值比pivot 小，那么就swap
                 nums[pind], nums[i] = nums[i], nums[pind]

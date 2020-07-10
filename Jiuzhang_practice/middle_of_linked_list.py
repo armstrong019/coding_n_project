@@ -1,3 +1,4 @@
+# 这道题目的解题关键就是要画图 见下
 """
 Definition of ListNode
 class ListNode(object):
@@ -27,3 +28,32 @@ class Solution:
             return slow
         else:
             return slow.next
+
+# revisited Jun 24th
+class Solution:
+    def middleNode(self, head: ListNode) -> ListNode:
+        ps = head
+        pf = head
+        while pf.next and pf.next.next:
+            ps = ps.next
+            pf = pf.next.next
+
+        if pf.next is None:
+            return ps
+        else:
+            return ps.next
+
+#          1-2-3-4-5-None
+#            s f
+#              s   f
+
+#          1-2-3-4-5-6-None
+#            s f
+#              s   f
+#                s     f
+
+#          1-2-None
+#            s f
+
+#          1-2-3-None
+#            s f

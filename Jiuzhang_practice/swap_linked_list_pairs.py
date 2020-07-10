@@ -1,3 +1,5 @@
+#https://www.cnblogs.com/yrbbest/p/4434861.html
+
 """
 Definition of ListNode
 class ListNode(object):
@@ -38,3 +40,17 @@ class Solution:
         return Dummy.next
 
 # use tempary variable to store the address of each node
+
+# 第二遍写还是不太会
+#https://medium.com/@jimdaosui/swap-nodes-in-pairs-67b311fd02f7
+# recursion 相对容易一点
+# 和dfs 类似吧， 走到最后一步然后从尾巴到头把list重建起来
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        post = self.swapPairs(head.next.next)
+        cur = head.next
+        cur.next = head
+        head.next = post
+        return cur

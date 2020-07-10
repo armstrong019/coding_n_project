@@ -22,22 +22,20 @@ class Solution(object):
         ps.next = ps.next.next
         return dummy.next
 
-# mock 的时候又写了一遍， 开始没有想到dummy的情况, [1,2] 1 case没过.
+# 自己写的方法， 面试写这个， 不需要dummy
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        if not head.next and n == 1:
-            return None
-        dummy = ListNode(-1)
-        dummy.next = head
-        p0 = dummy
-        p1 = dummy
+        pf, ps = head, head
+        for i in range(n):
+            pf = pf.next
 
-        while n != 0:
-            p1 = p1.next
-            n -= 1
-        while p1.next:
-            p0 = p0.next
-            p1 = p1.next
+        if pf is None:
+            return head.next
 
-        p0.next = p0.next.next
-        return dummy.next
+        while pf.next is not None:
+            ps = ps.next
+            pf = pf.next
+
+        ps.next = ps.next.next
+
+        return head

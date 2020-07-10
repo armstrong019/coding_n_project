@@ -39,53 +39,46 @@ class Solution:
         return max_sum
 # 注意要先更新maxsum 然后更新minsum： minsum 是前几个数的最小和
 
-
+# Brute force 这种方法 超时了 O（N^2）
 class Solution:
-    """
-    @param nums: A list of integers
-    @return: A integer indicate the sum of max subarray
-    """
-    def maxSubArray(self, nums):
-        # write your code here
-        if nums == []:
-            return None
-        cumsum = [0 for i in range(len(nums))]
-        cumsum[0] = nums[0]
-        for i in range(1, len(nums)):
-            cumsum[i] = cumsum[i-1]+nums[i]
-        minsum = nums[0] # 初始值指向第一个
-        maxsum = nums[0]
-        for i in range(1,len(cumsum)):
-            if minsum<=0:
-                maxsum = max(maxsum, cumsum[i]-minsum)
-            else:
-                maxsum = max(maxsum, cumsum[i]) # 如果前面最小值大于0， 那么用cumsum[i]进行更新
-            minsum = min(minsum, cumsum[i])
-        return maxsum
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums)<=1:
+            return sum(nums)
+        max_value = -sys.maxsize
+        for i in range(len(nums)):
+            for j in range(i, len(nums)):
+                sum_value = sum(nums[i:j+1])
+                if sum_value > max_value:
+                    max_value = sum_value
+        return max_value
+
 
 # dp[i] 表示以i为结尾的包含i的 subarray sum
 # if dp[i-1]<=0 dp[i] = nums[i], if dp[i-1]>0 dp[i] = dp[i]+nums[i]
+# 难点就是这个判断的condition是跟dp[i-1]相关的，跟nums[i]不相关。
 # [-2, 1, -3, 4, 2, -1, 2, -3]
 # [-2, 1, -2, 4, 6, 5, 7, 4]
 # 这个方法是最好写也最方便的 在实际操作过程中应该采用这种方法
 class Solution:
-    """
-    @param nums: A list of integers
-    @return: A integer indicate the sum of max subarray
-    """
-    def maxSubArray(self, nums):
-        max_sum = nums[0]
-        prev_sum = nums[0]
+    def maxSubArray(self, nums: List[int]) -> int:
+        dp = [nums[0]]
         for i in range(1, len(nums)):
-            if prev_sum <0:
-                prev_sum = nums[i]
+            if dp[-1] > 0:
+                dp.append(dp[-1]+nums[i])
             else:
-                prev_sum += nums[i]
-            if max_sum < prev_sum:
-                max_sum = prev_sum
-        return max_sum
+                dp.append(nums[i])
+        return max(dp)
 
-
-
-
+#在此基础上进行空间优化
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        prev = nums[0]
+        maxval = prev
+        for i in range(1, len(nums)):
+            if prev>0:
+                prev= prev+nums[i]
+            else:
+                prev = nums[i]
+            maxval = max(maxval, prev)
+        return maxval
 
