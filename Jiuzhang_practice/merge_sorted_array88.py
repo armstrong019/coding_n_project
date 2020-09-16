@@ -19,9 +19,14 @@ class Solution(object):
                 nums1[p0] = nums2[p2]
                 p0-=1
                 p2-=1
-        if p1<0:
-            nums1[:p0+1] = nums2[:p2+1]
+
+        if p1 < 0:
+            while p2 >=0:
+                nums1[p0] = nums2[p2]
+                p0-=1
+                p2-=1
 # time complexity is O(m+n), space complexity is O(1)
 # 三个指针， 两个分别指向array的最后一位， 第三个指向最后一个0的位置p0，然后进行比较。 将较大的一个放在p0的位置。
 # 然后移动指针。
-# 最后的情况： 如果p2先为0， 那么数组已经排序好了， 如果p1 先为0， 那么需要把nums2 还没有visited的那几个点移到第一个string里面
+# 最后的情况： 如果p2先为0， 那么数组已经排序好了 (因为数字都已经比较然后塞进去了)，
+#             如果p1 先为0 （第二个list里面还有没有被处理的数字）， 那么需要把nums2 还没有visited的那几个点移到第一个string里面

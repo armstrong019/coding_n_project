@@ -3,9 +3,7 @@ class TrieNode():
         self.children = {}
         self.is_word = False
 
-
 class Trie(object):
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -22,7 +20,7 @@ class Trie(object):
         for w in word:
             if w not in root.children:
                 root.children[w] = TrieNode()
-                root = root.children[w] # initerate on root
+                root = root.children[w] # iterate on root
             else:
                 root = root.children[w]
         root.is_word = True
@@ -64,7 +62,7 @@ obj = Trie()
 obj.insert('apple')
 param_2 = obj.search('apple')
 print(param_2)
-print(obj.root.children['a'].children['p'].children['p'].children)
+print('a' in obj.root.children)
 
 # Trie Node has two attributes
 #1. children: initially is empty dict, as we insert, this became a dictionary with child name: child TireNode object

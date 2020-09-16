@@ -2,6 +2,7 @@
 # Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.
 # The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
 # You may imagine that nums[-1] = nums[n] = -∞.
+# 参见find in mountain array
 
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:

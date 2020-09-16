@@ -16,3 +16,17 @@ class Solution:
 #DP, no brainer
 # 这道题是利用dp， dp[i] 要不就是从i-1走一步过来：dp[i-1], 要不就是i-2 走一步（2阶过来）： dp[i-2]
 # 所以dp[i] = dp[i-1]+dp[i-2]
+
+# 另一种写法
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
+        pprev = 1
+        prev = 2
+        for _ in range(3, n + 1):
+            val = pprev + prev
+            pprev = prev
+            prev = val
+        return val
+

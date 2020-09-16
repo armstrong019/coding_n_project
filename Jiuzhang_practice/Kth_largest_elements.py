@@ -35,3 +35,7 @@ class Solution(object):
                 heapq.heappop(heap)
         return heapq.heappop(heap)
 
+# heap push 的complexity
+# https://www.cnblogs.com/vamei/archive/2013/03/20/2966612.html
+# heap push的 操作 O（k）， k是heap的长度。heap的本质
+# heappop 的操作

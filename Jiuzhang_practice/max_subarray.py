@@ -22,37 +22,6 @@ The subarray should contain at least one number.
 """
 
 
-class Solution:
-    """
-    @param nums: A list of integers
-    @return: A integer indicate the sum of max subarray
-    """
-    def maxSubArray(self, nums):
-        # write your code here
-        max_sum = -sys.maxsize
-        min_sum = 0  # minimum sum from 0 to position k (k<=current)， initially must be 0：只有一个数的例子
-        prefix_sum = 0  # sum from position 0 to current
-        for i in range(len(nums)):
-            prefix_sum += nums[i]
-            max_sum = max(max_sum, prefix_sum-min_sum)
-            min_sum = min(prefix_sum, min_sum)
-        return max_sum
-# 注意要先更新maxsum 然后更新minsum： minsum 是前几个数的最小和
-
-# Brute force 这种方法 超时了 O（N^2）
-class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        if len(nums)<=1:
-            return sum(nums)
-        max_value = -sys.maxsize
-        for i in range(len(nums)):
-            for j in range(i, len(nums)):
-                sum_value = sum(nums[i:j+1])
-                if sum_value > max_value:
-                    max_value = sum_value
-        return max_value
-
-
 # dp[i] 表示以i为结尾的包含i的 subarray sum
 # if dp[i-1]<=0 dp[i] = nums[i], if dp[i-1]>0 dp[i] = dp[i]+nums[i]
 # 难点就是这个判断的condition是跟dp[i-1]相关的，跟nums[i]不相关。
@@ -82,3 +51,17 @@ class Solution:
             maxval = max(maxval, prev)
         return maxval
 
+
+
+# Brute force 这种方法 超时了 O（N^2）
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums)<=1:
+            return sum(nums)
+        max_value = -sys.maxsize
+        for i in range(len(nums)):
+            for j in range(i, len(nums)):
+                sum_value = sum(nums[i:j+1])
+                if sum_value > max_value:
+                    max_value = sum_value
+        return max_value

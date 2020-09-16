@@ -28,6 +28,7 @@ class Solution:
         return False
 
     def dfs(self, ind, current_pos, board, word, visited):
+        # 表示以 ind 开头的 sub word 和以 pos 在board里面的开始位置 进行深搜， 两个是否可以最终match。
         visited[current_pos[0]][current_pos[1]] = 1
         if ind == len(word) - 1:
             return True
@@ -60,6 +61,7 @@ class Solution:
 #              然后我们进行深搜（同样保证下一步也是成立的）， 如果有一支深搜成功了，那么就可以了
 #              如果都没成功， 这时候重点来了： 要还原visited 将当前这一步mark 成没有 visited, 释放当前的visited cell 使他还能再次得以利用！！！
 # 实例：[ABCE][SFES][ADEE] ABCESEEEFS
+
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         if not board:
@@ -76,8 +78,8 @@ class Solution:
 
     def dfs(self, x, y, ind, board, word, visited, dirs):
         if ind == len(word) - 1 and board[x][y] == word[-1]:
-            return True
             visited[x][y] = 1
+            return True
         else:
             return False
 

@@ -65,3 +65,60 @@ class LRUCache:
             self.move_to_end(node)
             self.hash[key] = (value, node)
 
+
+# 另外一种写法，只是定义了一个dummy head 这时候要注意update tail（没有上边好写）
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.head = Node(-1)
+        self.tail = self.head
+        self.hash = {}  # key: (node, val)
+
+    def get(self, key: int) -> int:
+        if key not in self.hash:
+            return -1
+        else:
+            node, val = self.hash[key]
+            _ = self.delete_node(node)  # delete node
+            self.append_node_to_end(node)  # do not need to update hash
+            return val
+
+    def delete_node(self, node):
+        if node == self.tail:  # end of the list
+            self.tail = node.prev
+            node.prev.next = None
+            node.prev = None
+            node.next = None
+
+        else:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            node.next = None
+            node.prev = None
+        return node.key
+
+    def append_node_to_end(self, node):
+        self.tail.next = node  # move node to end of list
+        node.prev = self.tail
+        self.tail = node  # redefine tail
+
+    def put(self, key: int, value: int) -> None:
+        if key not in self.hash:
+            new_node = Node(key)
+            if len(self.hash) < self.capacity:
+                self.append_node_to_end(new_node)
+                self.hash[key] = (new_node, value)
+            else:
+                self.append_node_to_end(new_node)
+                node_to_delete = self.head.next
+                key0 = self.delete_node(node_to_delete)
+                self.hash[key] = (new_node, value)
+                del self.hash[key0]
+        else:  # if key already in hash
+            node = self.hash[key][0]
+            _ = self.delete_node(node)  # delete node
+            self.append_node_to_end(node)
+            self.hash[key] = (node, value)
+

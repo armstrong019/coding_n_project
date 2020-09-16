@@ -1,3 +1,5 @@
+# binary search
+
 class Solution:
     """
     @param n: An integer

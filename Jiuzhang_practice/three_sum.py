@@ -84,7 +84,6 @@ class Solution:
         return res
 
     def find_solutions(self, ps, pe, nums, fix, res):
-        # 用一个while循环，从外向内找解， 分三种类型讨论，相等，大于，小于。
         while ps < pe:
             if nums[ps] + nums[pe] == fix: # 已经加入一个结果了， 然后把和他相同的结果都去掉 【-1，0，0，0，1，1，1】可以考虑这个例子， -1 是fix 的值
                 res.append([-fix, nums[ps], nums[pe]])
@@ -96,3 +95,37 @@ class Solution:
                 ps += 1
             else:
                 pe -= 1
+
+# Sep 9th 急中生智写的另一种。
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        res = []
+        for i in range(len(nums) - 2):
+            if nums[i] > 0:
+                break
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            fix = nums[i]
+            target = -fix
+            start = i + 1
+            end = len(nums) - 1
+            self.find_solutions(start, end, nums, target, res)
+        return res
+
+    def find_solutions(self, start, end, nums, target, res):
+        # 用一个while循环，从外向内找解， 分三种类型讨论，相等，大于，小于。
+        while start < end:
+            if nums[start] + nums[end] == target:
+                res.append([-target, nums[start], nums[end]])
+                start += 1
+                end -= 1
+                # 注意在找到一个结果以后开始去重，不同于上面集中写法这种去重个人认为是最好理解的
+
+                while start < end and nums[start] == nums[start - 1] and nums[end] == nums[end + 1]:
+                    start += 1
+                    end -= 1
+            elif nums[start] + nums[end] > target:
+                end -= 1
+            else:
+                start += 1

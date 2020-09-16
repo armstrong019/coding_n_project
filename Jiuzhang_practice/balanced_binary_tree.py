@@ -40,5 +40,28 @@ class Solution:
 # validate(self, root), 以root为子树的tree是否balance， 高度是多少
 
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        is_balanced, height = self.dfs(root)
+        return is_balanced
 
+    def dfs(self, root):
+        if not root:
+            return True, 0
+
+        is_left, lefth = self.dfs(root.left)
+        is_right, righth = self.dfs(root.right)
+
+        if is_left and is_right:
+            if abs(lefth - righth) > 1:
+                return False, -1
+            else:
+                return True, max(lefth, righth) + 1
+        return False, -1
 

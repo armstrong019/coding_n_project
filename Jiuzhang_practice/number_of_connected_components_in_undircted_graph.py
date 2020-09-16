@@ -1,27 +1,29 @@
-# # 第一种方法是dfs， 和数小岛的方法一样。这种方法效率比较慢
-# class Solution(object):
-#     def countComponents(self, n, edges):
-#         """
-#         :type n: int
-#         :type edges: List[List[int]]
-#         :rtype: int
-#         """
-#         count = 0
-#         visited = []
-#         for edge in edges:
-#             if edge[0] not in visited:
-#                 count += 1
-#                 self.dfs(edge[0], edges, visited)
-#         isolated_node = n - len(visited)
-#         return count + isolated_node
-#
-#     def dfs(self, start, edges, visited):
-#         visited.append(start)
-#         for eg in edges:
-#             if start in eg:
-#                 next_start = [x for x in eg if x != start][0]
-#                 if next_start not in visited:
-#                     self.dfs(next_start, edges, visited)
+# 第一种方法是dfs， friend cycle, sentence similarity, 相似， 都是无向图的遍历。
+# 建立一个graph， 和sentence similarity一致。dic = {node: connected nodes}
+# 然后遍历node， 每一个新的node 都去找 和他连接的所有点， 所有点再进行深搜， 在这个过程记录被visited的点
+from collections import defaultdict
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        # build graph
+        dic = defaultdict(set)
+        for i, j in edges:
+            dic[i].add(j)
+            dic[j].add(i)
+        count = 0
+        visited = set()
+        for node in dic:
+            if node not in visited:
+                count += 1
+                self.dfs(node, dic, visited)
+        isolated_comp = n - len(visited)
+        return count + isolated_comp
+
+    def dfs(self, node, dic, visited):
+        visited.add(node) # 什么时候加很重要， 一般一开始就加进去，否则会Miss掉第一个点
+        for node2 in dic[node]:
+            if node2 not in visited:
+                self.dfs(node2, dic, visited)
+
 
 # 第二种是union find 这种方法
 class Solution(object):
@@ -74,3 +76,27 @@ def find(x):
 
 print(find(8))
 print(parent)
+
+
+# 下面是我自己写的一个方法， 两个点同时找的过程。
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+
+        visited = set()
+        count = 0
+
+        for node1, node2 in edges:
+            if node1 not in visited and node2 not in visited:
+                count += 1
+                self.dfs(node1, visited, edges, node2)
+                self.dfs(node2, visited, edges, node1)
+        isolated_node = n - len(visited) # 注意corner case， 没有出现过的点
+        return count + isolated_node
+
+    def dfs(self, node, visited, edges, non_node):
+        visited.add(node) # 什么时候加很重要， 一般一开始就加进去，否则会Miss掉第一个点
+        for i, j in edges:
+            if i == node and j != non_node and j not in visited:
+                self.dfs(j, visited, edges, i)
+            if j == node and i != non_node and i not in visited:
+                self.dfs(i, visited, edges, j)

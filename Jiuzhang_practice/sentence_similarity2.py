@@ -1,10 +1,11 @@
 # dfs method to solve this problem.
+# 和sentence similarity， friend cycle 类似
 # (a,b) (b,c), (c,d)
 # 这道题目的实质是一个无向图， 所以我们需要构造graph 使其从 A-D 走通 从D-A 也要走通。
 # first step is to create a graph {a:b, b:a}--{a:b, b:(a,c), c:b}--{a:b, b:(a,c), c:(b,d), d:c}
 # we need to find if a is connect to d in this graph, need to keep a set called visited to avoid loop.
 # from a I go to b, from b go to c from c go to d.
-
+# 这道题和 number of Connected component, friend cycle 相似
 from collections import defaultdict
 class Solution(object):
     def areSentencesSimilarTwo(self, words1, words2, pairs):

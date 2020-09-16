@@ -12,6 +12,7 @@ nums = [3,2,5,-1,9,0]
 print(bubblesort(nums))
 
 # O（n**2）最差 average O（nlgn）
+# quicksort and bubble sort 都是inplace sorting algorithm
 class Solution(object):
     def sortArray(self, nums):
         """
@@ -39,3 +40,11 @@ class Solution(object):
                 pind += 1
         nums[pind], nums[right] = nums[right], nums[pind]# 最后将pivot放进来
         return pind
+
+sortedInsert(Stack S, element)
+    if stack is empty OR element > top element
+        push(S, elem)
+    else
+        temp = pop(S)
+        sortedInsert(S, element)
+        push(S, temp)

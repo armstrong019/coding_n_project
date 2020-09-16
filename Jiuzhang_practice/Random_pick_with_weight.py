@@ -1,5 +1,5 @@
 # Apple interview question
-
+# using bisect
 import numpy as np
 from bisect import bisect
 from random import uniform
