@@ -26,6 +26,6 @@ class Solution:
                 pass
             else:
                 return False
-        if len(w1) > len(w2):
+        if len(w1) > len(w2): # 处理corner case
             return False
         return True

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AutoEncoder/artificio" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Intuit/rit-challenge" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Loan_granting/Bank-loan-prediction" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Loan_granting/DATA-SCIENCE-CHALLENGES" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/xgboost/introspective" vcs="Git" />
   </component>
 </project>
